@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>系统提示信息 | 数据管理系统</title>
+
+    <meta name="keywords" content="系统提示信息 | 数据管理系统">
+    <meta name="description" content="系统提示信息 | 数据管理系统">
+
+    <!-- 全局CSS -->
+    <script src="/js/meta.js"></script>
+    <script type="text/javascript">
+        BASE_CSS();
+        BOOTSTRAP_TABLE_CSS();
+    </script>
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins" id="eml-upload">
+                <div class="ibox-content" id="eml-content">
+
+                    <script type="text/html" id="eml-template">
+                        <div class="panel-body">
+                            <div class="mail-tools tooltip-demo m-t-md">
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <h3>
+                                            <span class="font-noraml">提示信息： </span>{{file.tips}}
+                                        </h3>
+                                        <h5>
+                                            <span class="font-noraml">提示时间： </span>{{file.create_time}}
+                                        </h5>
+                                        <h5>
+                                            <span class="font-noraml">是否已读： </span>{{file.read}}
+                                        </h5>
+                                    </div>
+                                </div>
+
+
+                                <div class="feed-activity-list">
+                                    <textarea style="width: 100%; height: 400px;">{{file.message}}</textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 全局js -->
+<script type="text/javascript">
+    BASE_JS();
+    BOOTSTRAP_TABLE_JS();
+</script>
+<script src="/js/messages/messages-detail.js"></script>
+
+</body>
+
+</html>

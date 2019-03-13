@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.anluy.datapig.job.dao.ScheduleJobLogDao">
+
+    <resultMap id="RM_ScheduleJobLogEntityMapper" type="com.anluy.datapig.job.entity.ScheduleJobLogEntity">
+        <result property="logId" column="log_id"/>
+        <result property="jobId" column="job_id"/>
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="executor" column="executor"/>
+        <result property="beanName" column="bean_name"/>
+        <result property="params" column="params"/>
+        <result property="status" column="status"/>
+        <result property="msg" column="msg"/>
+        <result property="times" column="times"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+		<![CDATA[
+        log_id,job_id,type,name,executor,bean_name,params,status,msg,times,create_time
+        ]]>
+	</sql>
+    <sql id="where">
+        <!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+        <where>
+            <if test="@Ognl@isNotEmpty(logId)">
+                AND log_id = #{logId}
+            </if>
+            <if test="@Ognl@isNotEmpty(jobId)">
+                AND job_id = #{jobId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{type}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(executor)">
+                AND executor = #{executor}
+            </if>
+            <if test="@Ognl@isNotEmpty(beanName)">
+                AND bean_name = #{beanName}
+            </if>
+            <if test="@Ognl@isNotEmpty(status)">
+                AND status = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="save">
+        INSERT INTO schedule_job_log (
+        <include refid="columns"/>
+        ) VALUES (
+        #{logId, jdbcType=BIGINT} ,
+        #{jobId, jdbcType=VARCHAR} ,
+        #{type, jdbcType=VARCHAR} ,
+        #{name, jdbcType=VARCHAR} ,
+        #{executor, jdbcType=VARCHAR} ,
+        #{beanName, jdbcType=VARCHAR} ,
+        #{params, jdbcType=VARCHAR} ,
+        #{status, jdbcType=BIGINT} ,
+        #{msg, jdbcType=VARCHAR} ,
+        #{times, jdbcType=BIGINT} ,
+        #{createTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE schedule_job_log SET
+        <if test="@Ognl@isNotEmpty(type)">
+            type = #{type},
+        </if>
+        <if test="@Ognl@isNotEmpty(name)">
+            name = #{name},
+        </if>
+        <if test="@Ognl@isNotEmpty(executor)">
+            executor = #{executor},
+        </if>
+        <if test="@Ognl@isNotEmpty(beanName)">
+            bean_name = #{beanName},
+        </if>
+        <if test="@Ognl@isNotEmpty(status)">
+            status = #{status},
+        </if>
+        job_id = #{job_id, jdbcType=VARCHAR}
+        WHERE
+        job_id = #{job_id, jdbcType=VARCHAR}
+    </update>
+
+    <delete id="remove" parameterType="Long">
+        DELETE FROM schedule_job_log WHERE
+        log_id = #{logId}
+    </delete>
+    <delete id="removeByJobId" parameterType="String">
+        DELETE FROM schedule_job_log WHERE
+        job_id = #{jobId}
+    </delete>
+
+    <select id="get" resultMap="RM_ScheduleJobLogEntityMapper" parameterType="Long">
+        SELECT
+        <include refid="columns"/>
+        <![CDATA[
+		    FROM schedule_job_log
+	        WHERE
+		        log_id = #{logId}
+	    ]]>
+    </select>
+
+    <select id="getList" resultMap="RM_ScheduleJobLogEntityMapper">
+        SELECT
+        <include refid="columns"/>
+        FROM schedule_job_log
+        <include refid="where"/>
+    </select>
+
+    <select id="listPageCount" resultType="int">
+        SELECT count(1) FROM schedule_job_log
+        <include refid="where"/>
+    </select>
+
+    <select id="listPage" resultMap="RM_ScheduleJobLogEntityMapper">
+        SELECT
+        <include refid="columns"/>
+        FROM schedule_job_log
+        <include refid="where"/>
+        <if test="@Ognl@isNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+</mapper>
+

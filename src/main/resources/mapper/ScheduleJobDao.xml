@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.anluy.datapig.job.dao.ScheduleJobDao">
+
+    <resultMap id="RM_ScheduleJobEntityMapper" type="com.anluy.datapig.job.entity.ScheduleJobEntity">
+        <result property="jobId" column="job_id"/>
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="executor" column="executor"/>
+        <result property="beanName" column="bean_name"/>
+        <result property="params" column="params"/>
+        <result property="cronExpression" column="cron_expression"/>
+        <result property="status" column="status"/>
+        <result property="runStatus" column="run_status"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="startTime" column="START_TIME"/>
+        <result property="prevFireTime" column="PREV_FIRE_TIME"/>
+        <result property="nextFireTime" column="NEXT_FIRE_TIME"/>
+        <result property="increment" column="INCREMENT"/>
+        <result property="incrementAll" column="INCREMENT_ALL"/>
+        <result property="incrementColumn" column="INCREMENT_COLUMN"/>
+        <result property="incrementTime" column="INCREMENT_TIME"/>
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 ,START_TIME,PREV_FIRE_TIME,NEXT_FIRE_TIME-->
+    <sql id="columns">
+		<![CDATA[
+        job_id,type,name,executor,bean_name,params,cron_expression,status,run_status,remark,create_time,INCREMENT,INCREMENT_ALL,INCREMENT_COLUMN,INCREMENT_TIME
+        ]]>
+	</sql>
+    <sql id="where">
+        <!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+        <where>
+            <if test="@Ognl@isNotEmpty(jobId)">
+                AND job_id = #{jobId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{type}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(executor)">
+                AND executor = #{executor}
+            </if>
+            <if test="@Ognl@isNotEmpty(beanName)">
+                AND bean_name = #{beanName}
+            </if>
+            <if test="@Ognl@isNotEmpty(status)">
+                AND status = #{status}
+            </if>
+            <if test="@Ognl@isNotEmpty(runStatus)">
+                AND run_status = #{runStatus}
+            </if>
+            <if test="@Ognl@isNotEmpty(increment)">
+                AND increment = #{increment}
+            </if>
+            <if test="@Ognl@isNotEmpty(incrementAll)">
+                AND increment_all = #{incrementAll}
+            </if>
+            <if test="@Ognl@isNotEmpty(incrementColumn)">
+                AND increment_column = #{incrementColumn}
+            </if>
+            <if test="@Ognl@isNotEmpty(incrementTime)">
+                AND INCREMENT_TIME = #{incrementTime}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="save">
+        INSERT INTO Schedule_Job (
+        <include refid="columns"/>
+        ) VALUES (
+        #{jobId, jdbcType=VARCHAR} ,
+        #{type, jdbcType=VARCHAR} ,
+        #{name, jdbcType=VARCHAR} ,
+        #{executor, jdbcType=VARCHAR} ,
+        #{beanName, jdbcType=VARCHAR} ,
+        #{params, jdbcType=VARCHAR} ,
+        #{cronExpression, jdbcType=VARCHAR} ,
+        #{status, jdbcType=BIGINT} ,
+        #{runStatus, jdbcType=BIGINT} ,
+        #{remark, jdbcType=VARCHAR} ,
+        #{createTime, jdbcType=TIMESTAMP},
+        #{increment, jdbcType=BIGINT},
+        #{incrementAll, jdbcType=BIGINT},
+        #{incrementColumn, jdbcType=VARCHAR},
+        #{incrementTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE Schedule_Job SET
+        <if test="@Ognl@isNotEmpty(type)">
+            type = #{type},
+        </if>
+        <if test="@Ognl@isNotEmpty(name)">
+            name = #{name},
+        </if>
+        <if test="@Ognl@isNotEmpty(executor)">
+            executor = #{executor},
+        </if>
+        <if test="@Ognl@isNotNull(beanName)">
+            bean_name = #{beanName},
+        </if>
+        <if test="@Ognl@isNotNull(params)">
+            params = #{params},
+        </if>
+        <if test="@Ognl@isNotEmpty(cronExpression)">
+            cron_expression = #{cronExpression},
+        </if>
+        <if test="@Ognl@isNotEmpty(status)">
+            status = #{status},
+        </if>
+        <if test="@Ognl@isNotEmpty(runStatus)">
+            run_status = #{runStatus},
+        </if>
+        <if test="@Ognl@isNotNull(remark)">
+            remark = #{remark},
+        </if>
+        <if test="@Ognl@isNotEmpty(increment)">
+            increment = #{increment},
+        </if>
+        <if test="@Ognl@isNotEmpty(incrementAll)">
+            increment_all = #{incrementAll},
+        </if>
+        <if test="@Ognl@isNotNull(incrementColumn)">
+            increment_column = #{incrementColumn},
+        </if>
+        <if test="@Ognl@isNotEmpty(incrementTime)">
+            increment_time = #{incrementTime},
+        </if>
+        job_id = #{jobId, jdbcType=VARCHAR}
+        WHERE
+        job_id = #{jobId, jdbcType=VARCHAR}
+    </update>
+
+    <delete id="remove" parameterType="String">
+        DELETE FROM Schedule_Job WHERE
+        job_id = #{job_id}
+    </delete>
+
+    <select id="get" resultMap="RM_ScheduleJobEntityMapper" parameterType="String">
+        SELECT
+        <include refid="columns"/>
+        <![CDATA[
+		    FROM Schedule_Job
+	        WHERE
+		        job_id = #{job_id}
+	    ]]>
+    </select>
+
+    <select id="getList" resultMap="RM_ScheduleJobEntityMapper">
+        SELECT
+        <include refid="columns"/>,START_TIME,PREV_FIRE_TIME,NEXT_FIRE_TIME
+        FROM v_schedule_job
+        <include refid="where"/>
+    </select>
+
+    <select id="listPageCount" resultType="int">
+        SELECT count(1) FROM v_schedule_job
+        <include refid="where"/>
+    </select>
+
+    <select id="listPage" resultMap="RM_ScheduleJobEntityMapper">
+        SELECT
+        <include refid="columns"/>,START_TIME,PREV_FIRE_TIME,NEXT_FIRE_TIME
+        FROM v_schedule_job
+        <include refid="where"/>
+        <if test="@Ognl@isNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+</mapper>
+

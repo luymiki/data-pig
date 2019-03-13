@@ -1,0 +1,38 @@
+<!DOCTYPE html> <!-- 使用 HTML5 doctype，不区分大小写 -->
+<html lang="zh-cmn-Hans"> <!-- 更加标准的 lang 属性写法 -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>任务运行情况统计 | 数据管理系统</title>
+
+    <meta name="keywords" content="任务运行情况统计,数据管理系统">
+    <meta name="description" content="任务运行情况统计 | 数据管理系统">
+
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <!-- 全局CSS -->
+    <script src="/js/meta.js"></script>
+    <script type="text/javascript">
+        BASE_CSS();
+        BOOTSTRAP_TABLE_CSS();
+    </script>
+
+</head>
+<body>
+    <div class="btn btn-primary" id="add">新增菜单</div>
+
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#add").on("click",function(){
+                top.contabs.addMenuItem("http://www.baidu.com",'百度');
+            });
+
+        });
+    </script>
+</body>
+</html>

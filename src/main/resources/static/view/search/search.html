@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>一键搜索 | 数据管理系统</title>
+
+    <meta name="keywords" content="一键搜索 | 数据管理系统">
+    <meta name="description" content="一键搜索 | 数据管理系统">
+
+    <!-- 全局CSS -->
+    <script src="/js/meta.js"></script>
+    <script type="text/javascript">
+        BASE_CSS();
+        BOOTSTRAP_TABLE_CSS();
+    </script>
+    <style>
+        .search-info{
+            font-size: 14px;
+        }
+        .search-info code{
+            font-size: 16px;
+        }
+        .btn-index-tags{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <h2 id="search-msg">
+                            <!--为您找到相关结果约100,000,000个： <span class="text-navy">“后台主题”</span>-->
+                        </h2>
+                        <!--<small>搜索用时  (0.23秒)</small>-->
+
+                        <div class="search-form">
+                            <div class="input-group">
+                                <input type="text" placeholder="查询内容" id="search" name="search" class="form-control input-lg">
+                                <div class="input-group-btn">
+                                    <button id="search-btn" class="btn btn-lg btn-primary" type="button">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="index-list"></div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div id="search-list">
+                        </div>
+                        <nav id="pagination_box">
+                            <ul class="pagination" id="pagination"></ul>
+                        </nav>
+
+                        <div id="show-data-list" class="ibox float-e-margins" style="display: none;">
+                            <div class="ibox-title">
+                                <div class="ibox-tools" style="margin-top: -7px;">
+                                    <div class="btn btn-primary btn-sm" id="exportXls">导出EXCEL</div>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <table id="data-table" >
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script type="text/javascript">
+        BASE_JS();
+        BOOTSTRAP_TABLE_JS();
+    </script>
+
+    <script src="/js/search/search.js"></script>
+
+</body>
+
+</html>

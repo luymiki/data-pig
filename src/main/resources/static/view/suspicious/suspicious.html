@@ -1,0 +1,226 @@
+<!DOCTYPE html> <!-- 使用 HTML5 doctype，不区分大小写 -->
+<html lang="zh-cmn-Hans"> <!-- 更加标准的 lang 属性写法 -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>可疑人员管理 | 数据管理系统</title>
+
+    <meta name="keywords" content="可疑人员管理,数据管理系统">
+    <meta name="description" content="可疑人员管理 | 数据管理系统">
+
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <!-- 全局CSS -->
+    <script src="/js/meta.js"></script>
+    <script type="text/javascript">
+        BASE_CSS();
+        BOOTSTRAP_TABLE_CSS();
+    </script>
+    <style>
+        #suspicious-table #fix_head{
+            background: #FFFFFF;
+            box-shadow: 0px 0px 5px #888888;
+        }
+        .qkjj-cell{
+            width: 200px;
+        }
+        .import-btn{
+            display: none;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <div class="ibox-tools" style="margin-top: -7px;">
+                            <div class="btn btn-primary btn-sm" id="addBtn" >新增</div>
+                            <div class="btn btn-primary btn-sm" id="pizhu" >批注</div>
+                            <div class="btn btn-primary btn-sm" id="copyRow">复制行</div>
+                            <div class="btn btn-primary btn-sm" id="exportXls">导出EXCEL</div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <!--<div id="suspicious-table"></div>-->
+                        <!--<div id="page_bar">123</div>-->
+                        <table id="suspicious-table" data-mobile-responsive="true" >
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="addModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated fadeIn">
+                <div class="modal-header" style="padding: 15px;">
+                    <strong>可疑人员信息</strong>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" class="form-control" type="hidden">
+                        <input id="type" name="type" class="form-control" value="1" type="hidden">
+                        <input id="suspId" name="suspId" class="form-control" type="hidden">
+                        <input id="suspName" name="suspName" class="form-control" type="hidden">
+                        <!--<input id="other" name="other" class="form-control" type="hidden">-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">姓名：</label>
+                            <div class="col-sm-7">
+                                <input id="name" name="name" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">证件号码：</label>
+                            <div class="col-sm-7">
+                                <input id="gmsfzh" name="gmsfzh" class="form-control" type="text" aria-required="true" aria-invalid="false" class="valid" maxlength="18">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">工作进度：</label>
+                            <div class="col-sm-7">
+                                <input id="gzjd" name="gzjd" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">QQ号码：</label>
+                            <div class="col-sm-7">
+                                <textarea id="qq" name="qq" class="form-control data-value" rows="2" data-type="qq" data-value=""></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <div data-toggle="dropdown" class="dropdown-toggle btn btn-primary btn-sm import-btn ">导入</div>
+                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                    <li><a class="btn-qq" href="#">注册信息</a></li>
+                                    <li><a class="btn-qq-login" href="#">登录记录</a></li>
+                                    <li><a class="btn-qq-qzone" href="#">空间照片</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">微信：</label>
+                            <div class="col-sm-7">
+                                <textarea id="weixin" name="weixin" class="form-control  data-value" rows="2" data-type="weixin" data-value=""></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn btn-primary btn-sm import-btn btn-weixin">导入</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">财付通：</label>
+                            <div class="col-sm-7">
+                                <textarea id="cft" name="cft" class="form-control data-value" rows="2" data-type="cft" data-value=""></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn btn-primary btn-sm import-btn btn-cft">导入</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付宝：</label>
+                            <div class="col-sm-7">
+                                <textarea id="zfb" name="zfb" class="form-control data-value" rows="2" data-type="zfb" data-value=""></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <div data-toggle="dropdown" class="dropdown-toggle btn btn-primary btn-sm import-btn ">导入</div>
+                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                    <li><a class="btn-zfb" href="#">注册信息</a></li>
+                                    <li><a class="btn-zfb-login" href="#">登陆日志</a></li>
+                                    <li><a class="btn-zfb-zhmx" href="#">账户明细</a></li>
+                                    <li><a class="btn-zfb-txjl" href="#">提现记录</a></li>
+                                    <li><a class="btn-zfb-zzmx" href="#">转账明细</a></li>
+                                    <li><a class="btn-zfb-jyjl" href="#">交易记录</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">银行账号：</label>
+                            <div class="col-sm-7">
+                                <textarea id="yhzh" name="yhzh" class="form-control data-value" rows="2" data-type="yhzh" data-value=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">手机号：</label>
+                            <div class="col-sm-7">
+                                <textarea id="phone" name="phone" class="form-control data-value" rows="2" data-type="phone" data-value=""></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn btn-primary btn-sm import-btn btn-huadan">导入</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">IMEI：</label>
+                            <div class="col-sm-7">
+                                <textarea id="imei" name="imei" class="form-control data-value" rows="2" data-type="imei" data-value=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">IMSI：</label>
+                            <div class="col-sm-7">
+                                <input id="imsi" name="imsi" class="form-control data-value" type="text" data-type="imsi" data-value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">IP：</label>
+                            <div class="col-sm-7">
+                                <input id="ip" name="ip" class="form-control data-value" type="text" data-type="ip" data-value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">电子邮箱：</label>
+                            <div class="col-sm-7">
+                                <input id="email" name="email" class="form-control data-value" type="text" data-type="email" data-value="">
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn btn-primary btn-sm import-btn btn-email">导入</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">其他码值：</label>
+                            <div class="col-sm-7">
+                                <input id="other" name="other" class="form-control data-value" type="text" data-type="other" data-value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">情况简介：</label>
+                            <div class="col-sm-7">
+                                <textarea id="qkjj" name="qkjj" class="form-control" maxlength="2000">
+
+                                </textarea>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="submit" >保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script type="text/javascript">
+        BASE_JS();
+        BOOTSTRAP_TABLE_JS();
+    </script>
+
+
+
+    <!-- jQuery Validation plugin javascript-->
+    <script src="/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="/js/plugins/validate/messages_zh.min.js"></script>
+
+    <script src="/js/suspicious/suspicious.js"></script>
+
+
+</body>
+</html>

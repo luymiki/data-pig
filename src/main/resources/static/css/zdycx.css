@@ -1,0 +1,76 @@
+/**
+ * Created by hc.zeng on 2018/5/16.
+ */
+#zdyjm-box{
+    padding-bottom: 5px;
+}
+.opt-bar a{
+    text-decoration: underline;
+}
+.query-btn-box{
+    text-align: center;
+    padding: 0px;
+    min-height: 35px;
+}
+#add-group{
+    vertical-align: middle;
+    margin-top:0px;
+}
+#add-group-label{
+    box-sizing: border-box;
+    color: rgb(51, 122, 183);
+    cursor: pointer;
+    font-weight: normal;
+    height: auto;
+    line-height: 18.5714px;
+    text-decoration: underline;
+}
+.field{
+    width: 200px;
+    display: inline;
+
+}
+.short{
+    width: 140px;
+    display: inline;
+
+}
+.delete-btn{
+    font-size: 15px;
+    margin-top: 2px;
+    margin-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+fieldset{
+    padding: 5px;
+    margin: 5px 0px 5px 0px
+}
+legend{
+    font-size: 13px;
+    width: auto;
+    color: #23527c;
+    height: auto;
+    margin-bottom: 0px;
+}
+fieldset .form-control{
+    padding: 0px;
+    margin-left: 5px;
+    height: 25px;
+}
+.condtion-item{
+    margin-top: 5px;
+}
+.textarea{
+    vertical-align: middle;
+    margin-top:-2px;
+    height: 25px;
+    margin-left: 5px;
+    /*width: 400px;*/
+}
+.input{
+    vertical-align: middle;
+    margin-top:-2px;
+    height: 25px;
+    margin-left: 5px;
+}

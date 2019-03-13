@@ -1,0 +1,71 @@
+<!DOCTYPE html> <!-- 使用 HTML5 doctype，不区分大小写 -->
+<html lang="zh-cmn-Hans"> <!-- 更加标准的 lang 属性写法 -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>数据管理 | 数据管理系统</title>
+
+    <meta name="keywords" content="数据管理,数据管理系统">
+    <meta name="description" content="数据管理 | 数据管理系统">
+
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <!-- 全局CSS -->
+    <script src="/js/meta.js"></script>
+    <script type="text/javascript">
+        BASE_CSS();
+        BOOTSTRAP_TABLE_CSS();
+    </script>
+    <style>
+        #schedule-table #fix_head{
+            background: #FFFFFF;
+            box-shadow: 0px 0px 5px #888888;
+        }
+        .form-control{
+            width: 550px;
+        }
+        .msg{
+            word-break: break-all;
+        }
+        .text-center{
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <div class="ibox-tools" style="margin-top: -7px;">
+                            <div class="btn btn-primary btn-sm" id="deleteAll" >清空日志</div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table id="schedule-table" data-mobile-responsive="true" >
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script type="text/javascript">
+        BASE_JS();
+        BOOTSTRAP_TABLE_JS();
+    </script>
+
+    <script src="/js/schedule-log/schedule-log.js"></script>
+
+
+</body>
+</html>

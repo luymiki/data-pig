@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>人员信息 | 数据管理系统</title>
+
+    <meta name="keywords" content="人员信息 | 数据管理系统">
+    <meta name="description" content="人员信息 | 数据管理系统">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins" id="eml-upload">
+                <div class="ibox-content" id="eml-content">
+
+                    <script type="text/html" id="eml-template">
+                        <div class="panel-body">
+                            <div class="mail-tools tooltip-demo m-t-md">
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <h3>
+                                            <span class="font-noraml">类型： </span>{{file.type}}
+                                        </h3>
+                                        <h3>
+                                            <span class="font-noraml">姓名： </span>{{file.name}}
+                                        </h3>
+                                        <h5>
+                                            <span class="font-noraml">身份证号： </span>{{file.gmsfzh}}
+                                        </h5>
+                                        {{if file.susp_name}}
+                                        <h5>
+                                            <span class="font-noraml">关联可疑人员： </span>{{file.susp_name}}
+                                        </h5>
+                                        {{/if}}
+                                        <h5>
+                                            <span class="font-noraml">工作进度： </span>{{file.gzjd}}
+                                        </h5>
+                                    </div>
+                                </div>
+
+
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>QQ</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.qq as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>微信</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.weixin as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>财付通</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.cft as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>支付宝</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.zfb as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>银行账号</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.yhzh as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>手机号</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.phone as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>IMEI</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.imei as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>IMSI</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.imsi as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>电子邮箱</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{each file.email as ff i}}
+                                                {{ff}}&nbsp;
+                                                {{/each}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-activity-list">
+                                    <div class="feed-element">
+                                        <div class="media-body ">
+                                            <strong>情况简介</strong>：
+                                            <br>
+                                            <small class="text-muted">
+                                                {{ file.qkjj}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 全局js -->
+<script src="/js/jquery-3.3.1.js"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/ajax.proxy.js"></script>
+<script src="/js/msg.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/plugins/art-template/template.js"></script>
+<script src="/js/suspicious/suspicious-detail.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html> <!-- 使用 HTML5 doctype，不区分大小写 -->
+<html lang="zh-cmn-Hans"> <!-- 更加标准的 lang 属性写法 -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>数据管理 | 数据管理系统</title>
+
+    <meta name="keywords" content="数据管理,数据管理系统">
+    <meta name="description" content="数据管理 | 数据管理系统">
+
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <!-- 全局CSS -->
+    <script src="/js/meta.js"></script>
+    <link href="/js/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"></link>
+    <script type="text/javascript">
+        BASE_CSS();
+        BOOTSTRAP_TABLE_CSS();
+    </script>
+    <style>
+        #schedule-table #fix_head{
+            background: #FFFFFF;
+            box-shadow: 0px 0px 5px #888888;
+        }
+        .form-control{
+            width: 650px;
+        }
+        .text-center{
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <div class="ibox-tools" style="margin-top: -7px;">
+                            <div class="btn btn-primary btn-sm" id="addBtn" >新增</div>
+                            <!--<div class="btn btn-primary btn-sm" id="exportXls">导出EXCEL</div>-->
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <!--<div id="schedule-table"></div>-->
+                        <!--<div id="page_bar">123</div>-->
+                        <table id="schedule-table" data-mobile-responsive="true" >
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="addModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width: 850px;">
+            <div class="modal-content animated fadeIn">
+                <div class="modal-header" style="padding: 15px;">
+                    <strong>任务信息</strong>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body"style="padding:20px;">
+
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="jobId" name="jobId" class="form-control" type="hidden">
+                        <input id="executor" name="executor" class="form-control" type="hidden">
+                        <!--<input id="other" name="other" class="form-control" type="hidden">-->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">任务类型<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <select id="type" name="type" class="form-control" >
+                                    <option value="1">任务调度</option>
+                                    <option value="2">数据抽取</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">任务名称<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <input id="name" name="name" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">调度串<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <input id="cronExpression" name="cronExpression" class="form-control" type="text"  class="valid">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">任务状态<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <input id="status-0" name="status"  type="radio" checked value="0"><label for="status-0">&nbsp;运行</label>&emsp;&emsp;
+                                <input id="status-1" name="status"  type="radio" value="1"><label for="status-1">&nbsp;停止</label>
+                            </div>
+                        </div>
+                        <div class="form-group type-2">
+                            <label class="col-sm-2 control-label">增量设置<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <input id="increment-0" name="increment"  type="radio" checked value="0"><label for="increment-0">&nbsp;全量</label>&emsp;&emsp;
+                                <input id="increment-1" name="increment"  type="radio" value="1"><label for="increment-1">&nbsp;增量</label>
+                                <label style="margin-left: 10px;" class="control-label">时间字段：</label><input id="incrementColumn" name="incrementColumn" class="form-control" type="text"  style="width: 110px;display:inline;padding: 0px;">
+                                <label style="margin-left: 5px;" class="control-label">起始时间：</label><input id="incrementTime" name="incrementTime" class="form-control" type=""  style="width: 150px;display:inline;padding: 6px 0px;">
+                                <label style="margin-left: 10px;" class="control-label"></label><input id="incrementAll" name="incrementAll"  type="checkbox" value="1" checked><label for="incrementAll">&nbsp;执行一次全量</label>
+                            </div>
+                        </div>
+                        <div class="form-group type-1">
+                            <label class="col-sm-2 control-label">Bean<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <input id="beanName" name="beanName" class="form-control" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">任务参数<i style="color: red;">*</i>：</label>
+                            <div class="col-sm-10">
+                                <textarea id="params" name="params" class="form-control" maxlength="4000" style="height: 500px;font-family: '宋体','Arial';" wrap="off">
+
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注：</label>
+                            <div class="col-sm-10">
+                                <textarea id="remark" name="remark" class="form-control" maxlength="200" style="height: 100px;">
+                                </textarea>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="submit" >保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script type="text/javascript">
+        BASE_JS();
+        BOOTSTRAP_TABLE_JS();
+    </script>
+
+
+
+    <!-- jQuery Validation plugin javascript-->
+    <script src="/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="/js/plugins/validate/messages_zh.min.js"></script>
+    <script src="/js/plugins/moment/moment.js"></script>
+    <script src="/js/plugins/moment/locale/zh-cn.js"></script>
+    <script src="/js/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/js/schedule/schedule.js"></script>
+
+
+</body>
+</html>
