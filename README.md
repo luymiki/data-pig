@@ -58,7 +58,7 @@ reader和writer中参数name为必填项。<br>
             }
         }
     }
-
+<br>
                                       
 **<div id="ConsoleWriter">com.anluy.datapig.plugin.console.ConsoleWriter</div>**<br>
 输出 Console 数据插件：<br>
