@@ -5,8 +5,8 @@
 
 数据抽取<br>
 	<br>[插件配置说明](#插件配置说明)<br>
-	•	Console<br>
-		o	ConsoleWriter<br>
+	•	[Console](#ConsoleWriter)<br>
+		o	[ConsoleWriter](#ConsoleWriter)<br>
 	•	Database<br>
 		o	MySql<br>
 				MySqlReader<br>
@@ -33,7 +33,8 @@
 	•	任务配置说明<br>
 	•	任务开发<br>
 
-**插件配置说明**<div id="插件配置说明"></div><br>
+
+**<div id="插件配置说明">插件配置说明</div>**<br>
 插件必须包含两个部分：reader、writer。这两部分配置的配置项会被当做参数传入name配置中指定的插件类。插件类中可通过init(Map params)方法初始化，也可通过getParams()方法获取到。<br>
 reader和writer中参数name为必填项。<br>
 各个reader和writer插件可进行组合，并可根据业务需求进行插件开发<br>
@@ -58,7 +59,7 @@ reader和writer中参数name为必填项。<br>
         }
     }
                                             
-**com.anluy.datapig.plugin.console.ConsoleWriter**<br>
+**<div id="ConsoleWriter">com.anluy.datapig.plugin.console.ConsoleWriter</div>**<br>
 输出 Console 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.console.ConsoleWriter，必填项。<br>
 参数format：数据格式化选项。<br>
