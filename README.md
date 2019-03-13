@@ -59,7 +59,7 @@ reader和writer中参数name为必填项。<br>
         }
     }
 
-<br>                                           
+                                      
 **<div id="ConsoleWriter">com.anluy.datapig.plugin.console.ConsoleWriter</div>**<br>
 输出 Console 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.console.ConsoleWriter，必填项。<br>
