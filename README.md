@@ -7,31 +7,31 @@
 	<br>[插件配置说明](#插件配置说明)<br>
 	•	[Console](#ConsoleWriter)<br>
 		o	[ConsoleWriter](#ConsoleWriter)<br>
-	•	Database<br>
-		o	MySql<br>
-				MySqlReader<br>
-				MySqlWriter<br>
-		o	Oracle<br>
-				OracleReader<br>
-				OracleWriter<br>
-		o	SqlServer<br>
-				SqlServerReader<br>
-				SqlServerWriter<br>
-	•	ElasticSearch<br>
-		o	ElasticSearchReader<br><br>
-		o	ElasticSearchWriter<br>
-	•	TXT<br>
-		o	TxtReader<br><br>
-		o	TxtWriter<br>
-	•	FTP<br>
-		o	FtpTxtReader<br>
-		o	FtpTxtWriter<br><br>
-	•	插件开发<br>
-		o	Reader 插件开发<br>
-		o	Writer 插件开发<br>
-任务调度<br>
-	•	任务配置说明<br>
-	•	任务开发<br>
+	•	[Database](#MySqlReader)<br>
+		o	[MySql](#MySqlReader)<br>
+				[MySqlReader](#MySqlReader)<br>
+				[MySqlWriter](#MySqlWriter)<br>
+		o	[Oracle](#OracleReader)<br>
+				[OracleReader](#OracleReader)<br>
+				[OracleWriter](#OracleWriter)<br>
+		o	[SqlServer](#SqlServerReader)<br>
+				[SqlServerReader](#SqlServerReader)<br>
+				[SqlServerWriter](#SqlServerWriter)<br>
+	•	[ElasticSearch](#ElasticSearchReader)<br>
+		o	[ElasticSearchReader](#ElasticSearchReader)<br>
+		o	[ElasticSearchWriter](#ElasticSearchWriter)<br>
+	•	[TXT](#TxtReader)<br>
+		o	[TxtReader](#TxtReader)<br>
+		o	[TxtWriter](#TxtWriter)<br>
+	•	[FTP](#FtpTxtReader)<br>
+		o	[FtpTxtReader](#FtpTxtReader)<br>
+		o	[FtpTxtWriter](#FtpTxtWriter)<br>
+	•	[插件开发](#Reader 插件开发)<br>
+		o	[Reader 插件开发](#Reader 插件开发)<br>
+		o	[Writer 插件开发](#Writer 插件开发)<br>
+[任务调度](#任务配置说明)<br>
+	•	[任务配置说明](#任务配置说明)<br>
+	•	[任务开发](#任务开发)<br>
 
 
 **<div id="插件配置说明">插件配置说明</div>**<br>
@@ -105,7 +105,8 @@ reader和writer中参数name为必填项。<br>
            }
         }
     }
-<br>                              
+<br>   
+
 **<div id="MySqlWriter">com.anluy.datapig.plugin.database.mysql.MySqlWriter</div>**<br>
 写入 MySql 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.database.mysql.MySqlWriter，必填项。<br>
@@ -129,7 +130,8 @@ reader和writer中参数name为必填项。<br>
             }
         }
     }
-<br>                          
+<br>     
+
 **<div id="OracleReader">com.anluy.datapig.plugin.database.oracle.OracleReader</div>**<br>
 读取 Oracle 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.database.oracle.OracleReader，必填项。<br>
@@ -152,7 +154,8 @@ reader和writer中参数name为必填项。<br>
            },
         }
     }
-<br>                                
+<br>    
+
 **<div id="OracleWriter">com.anluy.datapig.plugin.database.oracle.OracleWriter</div>**<br>
 写入 Oracle 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.database.oracle.OracleWriter，必填项。<br>
@@ -176,7 +179,8 @@ reader和writer中参数name为必填项。<br>
            }
         }
     }
-<br>                                
+<br>     
+
 **<div id="SqlServerReader">com.anluy.datapig.plugin.database.sqlserver.SqlServerReader</div>**<br>
 读取 Oracle 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.database.sqlserver.SqlServerReader，必填项。<br>
@@ -199,7 +203,8 @@ reader和writer中参数name为必填项。<br>
            },
         }
     }
-<br>                         
+<br>   
+
 **<div id="SqlServerWriter">com.anluy.datapig.plugin.database.sqlserver.SqlServerWriter</div>**<br>
 写入 Oracle 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.database.sqlserver.SqlServerWriter，必填项。<br>
@@ -223,7 +228,8 @@ reader和writer中参数name为必填项。<br>
            }
         }
     }
-<br>                               
+<br>      
+
 **<div id="ElasticSearchReader">com.anluy.datapig.plugin.elasticsearch.ElasticSearchReader</div>**<br>
 读取 ElasticSearch 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.elasticsearch.ElasticSearchReader，必填项。<br>
@@ -273,7 +279,8 @@ reader和writer中参数name为必填项。<br>
            }
        }
     }
-<br>                            
+<br>         
+
 **<div id="ElasticSearchWriter">com.anluy.datapig.plugin.elasticsearch.ElasticSearchWriter</div>**<br>
 写入 ElasticSearch 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.elasticsearch.ElasticSearchWriter，必填项。<br>
@@ -315,7 +322,8 @@ reader和writer中参数name为必填项。<br>
             }
         }
     }
-<br>                                
+<br>      
+
 **<div id="TxtReader">com.anluy.datapig.plugin.txt.TxtReader</div>**<br>
 读取 Txt文件 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.txt.TxtReader，必填项。<br>
@@ -346,7 +354,8 @@ reader和writer中参数name为必填项。<br>
            }
        }
     }
-<br>                                
+<br>         
+
 **<div id="TxtWriter">com.anluy.datapig.plugin.txt.TxtWriter</div>**<br>
 写入 Txt 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.txt.TxtWriter，必填项。<br>
@@ -371,7 +380,8 @@ reader和writer中参数name为必填项。<br>
             }
         }
     }
-<br>                                  
+<br>      
+
 **<div id="FtpTxtReader">com.anluy.datapig.plugin.ftp.FtpTxtReader</div>**<br>
 读取 Ftp Txt文件 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.ftp.FtpTxtReader，必填项。<br>
@@ -411,6 +421,7 @@ reader和writer中参数name为必填项。<br>
        }
     }
 <br>
+
 **<div id="FtpTxtWriter">com.anluy.datapig.plugin.ftp.FtpTxtWriter</div>**<br>
 写入 Ftp Txt 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.ftp.FtpTxtWriter，必填项。<br>
@@ -443,7 +454,8 @@ reader和writer中参数name为必填项。<br>
             }
         }
     }
-<br>                                     
+<br>       
+
 **<div id="Reader 插件开发">Reader 插件开发</div>**<br>
 Reader类必须继承com.anluy.datapig.plugin.core.Reader实现call方法并调用this.execute();。<br>
 Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.datapig.plugin.core.Reader.Task实现call方法并调用任务的具体实现。<br>
@@ -654,7 +666,8 @@ Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.dat
             }
         }
     }
-<br>                                
+<br>    
+
 **<div id="Writer 插件开发">Writer 插件开发</div>**<br>
 Writer类必须继承com.anluy.datapig.plugin.core.Writer实现call方法并调用this.execute();。<br>
 Task任务实现类，在Writer类中创建一个内部类并继承com.anluy.datapig.plugin.core.Writer.Task实现call方法并调用任务的具体实现。<br>
@@ -941,7 +954,8 @@ Task任务实现类，在Writer类中创建一个内部类并继承com.anluy.dat
     
         }
     }
-<br>                             
+<br>       
+
 **<div id="任务配置说明">任务配置说明</div>**<br>
 任务必须包含参数Bean。<br>
 Bean指定为Spring Bean的类时必须是在Spring容器中的，否则报错。<br>
