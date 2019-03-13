@@ -4,7 +4,7 @@
 
 
 数据抽取<br>
-	<br>插件配置说明<br>
+	<br>[插件配置说明](#插件配置说明)<br>
 	•	Console<br>
 		o	ConsoleWriter<br>
 	•	Database<br>
@@ -33,7 +33,7 @@
 	•	任务配置说明<br>
 	•	任务开发<br>
 
-**插件配置说明**<br>
+<div id="插件配置说明"></div>**插件配置说明**<br>
 插件必须包含两个部分：reader、writer。这两部分配置的配置项会被当做参数传入name配置中指定的插件类。插件类中可通过init(Map params)方法初始化，也可通过getParams()方法获取到。<br>
 reader和writer中参数name为必填项。<br>
 各个reader和writer插件可进行组合，并可根据业务需求进行插件开发<br>
