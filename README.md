@@ -27,9 +27,9 @@
 &emsp;[FTP](#FtpTxtReader)<br>
 &emsp;&emsp;[FtpTxtReader](#FtpTxtReader)<br>
 &emsp;&emsp;[FtpTxtWriter](#FtpTxtWriter)<br>
-&emsp;[插件开发](#Reader 插件开发)<br>
-&emsp;&emsp;[Reader 插件开发](#Reader 插件开发)<br>
-&emsp;&emsp;[Writer 插件开发](#Writer 插件开发)<br>
+&emsp;[插件开发](#Reader插件开发)<br>
+&emsp;&emsp;[Reader 插件开发](#Reader插件开发)<br>
+&emsp;&emsp;[Writer 插件开发](#Writer插件开发)<br>
 [任务调度](#任务配置说明)<br>
 &emsp;[任务配置说明](#任务配置说明)<br>
 &emsp;[任务开发](#任务开发)<br>
@@ -458,7 +458,7 @@ reader和writer中参数name为必填项。<br>
     }
 <br>       
 
-**<div id="Reader 插件开发">Reader 插件开发</div>**<br>
+**<div id="Reader插件开发">Reader 插件开发</div>**<br>
 Reader类必须继承com.anluy.datapig.plugin.core.Reader实现call方法并调用this.execute();。<br>
 Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.datapig.plugin.core.Reader.Task实现call方法并调用任务的具体实现。<br>
 实现init(Map params)方法，并在方法中初始化必要的参数和校验。<br>
@@ -670,7 +670,7 @@ Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.dat
     }
 <br>    
 
-**<div id="Writer 插件开发">Writer 插件开发</div>**<br>
+**<div id="Writer插件开发">Writer 插件开发</div>**<br>
 Writer类必须继承com.anluy.datapig.plugin.core.Writer实现call方法并调用this.execute();。<br>
 Task任务实现类，在Writer类中创建一个内部类并继承com.anluy.datapig.plugin.core.Writer.Task实现call方法并调用任务的具体实现。<br>
 实现init(Map params)方法，并在方法中初始化必要的参数和校验。<br>
