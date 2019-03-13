@@ -3,35 +3,36 @@
 ## 数据管理配置文档
 
 
-数据抽取<br>
-	<br>[插件配置说明](#插件配置说明)<br>
-	•	[Console](#ConsoleWriter)<br>
-		o	[ConsoleWriter](#ConsoleWriter)<br>
-	•	[Database](#MySqlReader)<br>
-		o	[MySql](#MySqlReader)<br>
-				[MySqlReader](#MySqlReader)<br>
-				[MySqlWriter](#MySqlWriter)<br>
-		o	[Oracle](#OracleReader)<br>
-				[OracleReader](#OracleReader)<br>
-				[OracleWriter](#OracleWriter)<br>
-		o	[SqlServer](#SqlServerReader)<br>
-				[SqlServerReader](#SqlServerReader)<br>
-				[SqlServerWriter](#SqlServerWriter)<br>
-	•	[ElasticSearch](#ElasticSearchReader)<br>
-		o	[ElasticSearchReader](#ElasticSearchReader)<br>
-		o	[ElasticSearchWriter](#ElasticSearchWriter)<br>
-	•	[TXT](#TxtReader)<br>
-		o	[TxtReader](#TxtReader)<br>
-		o	[TxtWriter](#TxtWriter)<br>
-	•	[FTP](#FtpTxtReader)<br>
-		o	[FtpTxtReader](#FtpTxtReader)<br>
-		o	[FtpTxtWriter](#FtpTxtWriter)<br>
-	•	[插件开发](#Reader 插件开发)<br>
-		o	[Reader 插件开发](#Reader 插件开发)<br>
-		o	[Writer 插件开发](#Writer 插件开发)<br>
+数据抽取<br><br>
+	
+[插件配置说明](#插件配置说明)<br>
+&emsp;[Console](#ConsoleWriter)<br>
+&emsp;&emsp;[ConsoleWriter](#ConsoleWriter)<br>
+&emsp;[Database](#MySqlReader)<br>
+&emsp;&emsp;[MySql](#MySqlReader)<br>
+&emsp;&emsp;&emsp;[MySqlReader](#MySqlReader)<br>
+&emsp;&emsp;&emsp;[MySqlWriter](#MySqlWriter)<br>
+&emsp;&emsp;[Oracle](#OracleReader)<br>
+&emsp;&emsp;&emsp;[OracleReader](#OracleReader)<br>
+&emsp;&emsp;&emsp;[OracleWriter](#OracleWriter)<br>
+&emsp;&emsp;[SqlServer](#SqlServerReader)<br>
+&emsp;&emsp;&emsp;[SqlServerReader](#SqlServerReader)<br>
+&emsp;&emsp;&emsp;[SqlServerWriter](#SqlServerWriter)<br>
+&emsp;[ElasticSearch](#ElasticSearchReader)<br>
+&emsp;&emsp;[ElasticSearchReader](#ElasticSearchReader)<br>
+&emsp;&emsp;[ElasticSearchWriter](#ElasticSearchWriter)<br>
+&emsp;[TXT](#TxtReader)<br>
+&emsp;&emsp;[TxtReader](#TxtReader)<br>
+&emsp;&emsp;[TxtWriter](#TxtWriter)<br>
+&emsp;[FTP](#FtpTxtReader)<br>
+&emsp;&emsp;[FtpTxtReader](#FtpTxtReader)<br>
+&emsp;&emsp;[FtpTxtWriter](#FtpTxtWriter)<br>
+&emsp;[插件开发](#Reader 插件开发)<br>
+&emsp;&emsp;[Reader 插件开发](#Reader 插件开发)<br>
+&emsp;&emsp;[Writer 插件开发](#Writer 插件开发)<br>
 [任务调度](#任务配置说明)<br>
-	•	[任务配置说明](#任务配置说明)<br>
-	•	[任务开发](#任务开发)<br>
+&emsp;[任务配置说明](#任务配置说明)<br>
+&emsp;[任务开发](#任务开发)<br>
 
 
 **<div id="插件配置说明">插件配置说明</div>**<br>
