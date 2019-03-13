@@ -78,7 +78,8 @@ reader和writer中参数name为必填项。<br>
         }
     }
 
-<br>                                  
+<br>           
+
 **<div id="MySqlReader">com.anluy.datapig.plugin.database.mysql.MySqlReader</div>**<br>
 读取 MySql 数据插件：<br>
 参数name：值为固定的com.anluy.datapig.plugin.database.mysql.MySqlReader，必填项。<br>
