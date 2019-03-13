@@ -3,40 +3,40 @@
 ## 数据管理配置文档
 
 
-数据抽取
-	•	插件配置说明
-	•	Console
-		o	ConsoleWriter
-	•	Database
-		o	MySql
-				MySqlReader
-				MySqlWriter
-		o	Oracle
-				OracleReader
-				OracleWriter
-		o	SqlServer
-				SqlServerReader
-				SqlServerWriter
-	•	ElasticSearch
-		o	ElasticSearchReader
-		o	ElasticSearchWriter
-	•	TXT
-		o	TxtReader
-		o	TxtWriter
-	•	FTP
-		o	FtpTxtReader
-		o	FtpTxtWriter
-	•	插件开发
-		o	Reader 插件开发
-		o	Writer 插件开发
-任务调度
-	•	任务配置说明
-	•	任务开发
+数据抽取<br>
+	<br>插件配置说明<br>
+	•	Console<br>
+		o	ConsoleWriter<br>
+	•	Database<br>
+		o	MySql<br>
+				MySqlReader<br>
+				MySqlWriter<br>
+		o	Oracle<br>
+				OracleReader<br>
+				OracleWriter<br>
+		o	SqlServer<br>
+				SqlServerReader<br>
+				SqlServerWriter<br>
+	•	ElasticSearch<br>
+		o	ElasticSearchReader<br><br>
+		o	ElasticSearchWriter<br>
+	•	TXT<br>
+		o	TxtReader<br><br>
+		o	TxtWriter<br>
+	•	FTP<br>
+		o	FtpTxtReader<br>
+		o	FtpTxtWriter<br><br>
+	•	插件开发<br>
+		o	Reader 插件开发<br>
+		o	Writer 插件开发<br>
+任务调度<br>
+	•	任务配置说明<br>
+	•	任务开发<br>
 
-**插件配置说明**
-插件必须包含两个部分：reader、writer。这两部分配置的配置项会被当做参数传入name配置中指定的插件类。插件类中可通过init(Map params)方法初始化，也可通过getParams()方法获取到。
-reader和writer中参数name为必填项。
-各个reader和writer插件可进行组合，并可根据业务需求进行插件开发
+**插件配置说明**<br>
+插件必须包含两个部分：reader、writer。这两部分配置的配置项会被当做参数传入name配置中指定的插件类。插件类中可通过init(Map params)方法初始化，也可通过getParams()方法获取到。<br>
+reader和writer中参数name为必填项。<br>
+各个reader和writer插件可进行组合，并可根据业务需求进行插件开发<br>
 
     {
         "plugin":{
@@ -58,12 +58,12 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.console.ConsoleWriter**
-输出 Console 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.console.ConsoleWriter，必填项。
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为字符串格式，可填项。
-  目前只实现了以上一个格式化方法。
+**com.anluy.datapig.plugin.console.ConsoleWriter**<br>
+输出 Console 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.console.ConsoleWriter，必填项。<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为字符串格式，可填项。<br>
+  目前只实现了以上一个格式化方法。<br>
 
     {
         "plugin":{
@@ -76,15 +76,15 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.database.mysql.MySqlReader**
-读取 MySql 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.database.mysql.MySqlReader，必填项。
-参数url：值为数据库的JDBC连接串，必填项。
-参数username：值为数据库登陆用户名，必填项。
-参数password：值为数据库登陆用户名，必填项。
-参数encoding：值为读取数据库字符字段的编码设置，可填项。
-参数sql：值为查询数据的SQL串，必填项。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.database.mysql.MySqlReader**<br><br>
+读取 MySql 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.database.mysql.MySqlReader，必填项。<br>
+参数url：值为数据库的JDBC连接串，必填项。<br>
+参数username：值为数据库登陆用户名，必填项。<br>
+参数password：值为数据库登陆用户名，必填项。<br>
+参数encoding：值为读取数据库字符字段的编码设置，可填项。<br>
+参数sql：值为查询数据的SQL串，必填项。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
 
     {
         "plugin":{
@@ -103,16 +103,16 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.database.mysql.MySqlWriter**
-写入 MySql 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.database.mysql.MySqlWriter，必填项。
-参数url：值为数据库的JDBC连接串，必填项。
-参数username：值为数据库登陆用户名，必填项。
-参数password：值为数据库登陆用户名，必填项。
-参数tableName：需要插入数据的表名，必填项。这张表必须存在，否则会报错，插入的INSERT语句是自动根据读取插件读取到的字段名生成。
-参数batchSize：每次批量提交的记录数，必填项。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
-★ 注意：数据插入不会判断数据是否存在，有可能会存在主键冲突。如需判断需自定义插件。
+**com.anluy.datapig.plugin.database.mysql.MySqlWriter**<br><br>
+写入 MySql 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.database.mysql.MySqlWriter，必填项。<br>
+参数url：值为数据库的JDBC连接串，必填项。<br>
+参数username：值为数据库登陆用户名，必填项。<br>
+参数password：值为数据库登陆用户名，必填项。<br>
+参数tableName：需要插入数据的表名，必填项。这张表必须存在，否则会报错，插入的INSERT语句是自动根据读取插件读取到的字段名生成。<br>
+参数batchSize：每次批量提交的记录数，必填项。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
+★ 注意：数据插入不会判断数据是否存在，有可能会存在主键冲突。如需判断需自定义插件。<br>
 
     {
         "plugin":{
@@ -127,15 +127,15 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.database.oracle.OracleReader**
-读取 Oracle 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.database.oracle.OracleReader，必填项。
-参数url：值为数据库的JDBC连接串，必填项。
-参数username：值为数据库登陆用户名，必填项。
-参数password：值为数据库登陆用户名，必填项。
-参数encoding：值为读取数据库字符字段的编码设置，可填项。
-参数sql：值为查询数据的SQL串，必填项。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.database.oracle.OracleReader**<br>
+读取 Oracle 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.database.oracle.OracleReader，必填项。<br>
+参数url：值为数据库的JDBC连接串，必填项。<br>
+参数username：值为数据库登陆用户名，必填项。<br>
+参数password：值为数据库登陆用户名，必填项。<br>
+参数encoding：值为读取数据库字符字段的编码设置，可填项。<br>
+参数sql：值为查询数据的SQL串，必填项。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
 
     {
         "plugin":{
@@ -150,16 +150,16 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.database.oracle.OracleWriter**
-写入 Oracle 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.database.oracle.OracleWriter，必填项。
-参数url：值为数据库的JDBC连接串，必填项。
-参数username：值为数据库登陆用户名，必填项。
-参数password：值为数据库登陆用户名，必填项。
-参数tableName：需要插入数据的表名，必填项。这张表必须存在，否则会报错，插入的INSERT语句是自动根据读取插件读取到的字段名生成。
-参数batchSize：每次批量提交的记录数，必填项。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
-★ 注意：数据插入不会判断数据是否存在，有可能会存在主键冲突。如需判断需自定义插件。
+**com.anluy.datapig.plugin.database.oracle.OracleWriter**<br>
+写入 Oracle 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.database.oracle.OracleWriter，必填项。<br>
+参数url：值为数据库的JDBC连接串，必填项。<br>
+参数username：值为数据库登陆用户名，必填项。<br>
+参数password：值为数据库登陆用户名，必填项。<br>
+参数tableName：需要插入数据的表名，必填项。这张表必须存在，否则会报错，插入的INSERT语句是自动根据读取插件读取到的字段名生成。<br>
+参数batchSize：每次批量提交的记录数，必填项。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
+★ 注意：数据插入不会判断数据是否存在，有可能会存在主键冲突。如需判断需自定义插件。<br>
 
     {
         "plugin":{
@@ -174,15 +174,15 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.database.sqlserver.SqlServerReader**
-读取 Oracle 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.database.sqlserver.SqlServerReader，必填项。
-参数url：值为数据库的JDBC连接串，必填项。
-参数username：值为数据库登陆用户名，必填项。
-参数password：值为数据库登陆用户名，必填项。
-参数encoding：值为读取数据库字符字段的编码设置，可填项。
-参数sql：值为查询数据的SQL串，必填项。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.database.sqlserver.SqlServerReader**<br>
+读取 Oracle 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.database.sqlserver.SqlServerReader，必填项。<br>
+参数url：值为数据库的JDBC连接串，必填项。<br>
+参数username：值为数据库登陆用户名，必填项。<br>
+参数password：值为数据库登陆用户名，必填项。<br>
+参数encoding：值为读取数据库字符字段的编码设置，可填项。<br>
+参数sql：值为查询数据的SQL串，必填项。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
 
     {
         "plugin":{
@@ -197,16 +197,16 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.database.sqlserver.SqlServerWriter**
-写入 Oracle 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.database.sqlserver.SqlServerWriter，必填项。
-参数url：值为数据库的JDBC连接串，必填项。
-参数username：值为数据库登陆用户名，必填项。
-参数password：值为数据库登陆用户名，必填项。
-参数tableName：需要插入数据的表名，必填项。这张表必须存在，否则会报错，插入的INSERT语句是自动根据读取插件读取到的字段名生成。
-参数batchSize：每次批量提交的记录数，必填项。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
-★ 注意：数据插入不会判断数据是否存在，有可能会存在主键冲突。如需判断需自定义插件。
+**com.anluy.datapig.plugin.database.sqlserver.SqlServerWriter**<br>
+写入 Oracle 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.database.sqlserver.SqlServerWriter，必填项。<br>
+参数url：值为数据库的JDBC连接串，必填项。<br>
+参数username：值为数据库登陆用户名，必填项。<br>
+参数password：值为数据库登陆用户名，必填项。<br>
+参数tableName：需要插入数据的表名，必填项。这张表必须存在，否则会报错，插入的INSERT语句是自动根据读取插件读取到的字段名生成。<br>
+参数batchSize：每次批量提交的记录数，必填项。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
+★ 注意：数据插入不会判断数据是否存在，有可能会存在主键冲突。如需判断需自定义插件。<br>
 
     {
         "plugin":{
@@ -221,22 +221,22 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.elasticsearch.ElasticSearchReader**
-读取 ElasticSearch 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.elasticsearch.ElasticSearchReader，必填项。
-参数host：值为ElasticSearch的连接串，多个地址用,分隔，必填项。
-参数username：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。
-参数password：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。
-参数indexName：需要插入数据的索引名，必填项。这个索引在ElasticSearch中必须存在，否则会报错。
-参数typeName：需要插入数据的type名，必填项。保存数据的json或sql的字段名是自动根据读取到的字段名生成。
-参数dsl：查询ElasticSearch的DSL语句，可填项，不填时自动生成{"size":500,"query":{"match_all":{}}}。
-参数prefix：将ElasticSearch的字段名进行前缀删除，可填项。
-参数mapping：将ElasticSearch的字段名进行映射，可填项。
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为java.util.Date格式，可填项。
-  参数join：对指定字段的数据（数组）进行拼接，转换为字符串格式，可填项。
-  目前只实现了以上两个格式化方法。
-以上参数为插件类中通过init(Map params)方法初始化创建ElasticSearch连接使用，程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.elasticsearch.ElasticSearchReader**<br>
+读取 ElasticSearch 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.elasticsearch.ElasticSearchReader，必填项。<br>
+参数host：值为ElasticSearch的连接串，多个地址用,分隔，必填项。<br>
+参数username：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。<br>
+参数password：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。<br>
+参数indexName：需要插入数据的索引名，必填项。这个索引在ElasticSearch中必须存在，否则会报错。<br>
+参数typeName：需要插入数据的type名，必填项。保存数据的json或sql的字段名是自动根据读取到的字段名生成。<br>
+参数dsl：查询ElasticSearch的DSL语句，可填项，不填时自动生成{"size":500,"query":{"match_all":{}}}。<br>
+参数prefix：将ElasticSearch的字段名进行前缀删除，可填项。<br>
+参数mapping：将ElasticSearch的字段名进行映射，可填项。<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为java.util.Date格式，可填项。<br>
+  参数join：对指定字段的数据（数组）进行拼接，转换为字符串格式，可填项。<br>
+  目前只实现了以上两个格式化方法。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建ElasticSearch连接使用，程序中可通过getParams()方法获取到。<br>
 
     {
        "plugin":{
@@ -271,22 +271,22 @@ reader和writer中参数name为必填项。
        }
     }
                                             
-**com.anluy.datapig.plugin.elasticsearch.ElasticSearchWriter**
-写入 ElasticSearch 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.elasticsearch.ElasticSearchWriter，必填项。
-参数host：值为ElasticSearch的连接串，多个地址用,分隔，必填项。
-参数username：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。
-参数password：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。
-参数indexName：需要索引数据的索引名，必填项。这个索引在ElasticSearch中必须存在，否则会报错。
-参数typeName：需要索引数据的type名，必填项。这个type必须存在，否则可能会报错，索引数据的json字段名是自动根据读取插件读取到的字段名生成。
-参数prefix：将ElasticSearch的字段名进行前缀添加，可填项。
-参数batchSize：每次批量提交的记录数，必填项。
-参数mapping：将ElasticSearch的字段名进行映射，可填项。
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为字符串格式，可填项。
-  参数split：对指定字段的数据进行分割，转换为数组格式，可填项。
-  目前只实现了以上两个格式化方法。
-以上参数为插件类中通过init(Map params)方法初始化创建ElasticSearch连接使用，程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.elasticsearch.ElasticSearchWriter**<br>
+写入 ElasticSearch 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.elasticsearch.ElasticSearchWriter，必填项。<br>
+参数host：值为ElasticSearch的连接串，多个地址用,分隔，必填项。<br>
+参数username：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。<br>
+参数password：值为ElasticSearch登陆用户名，必填项。如果ElasticSearch没有配置用户验证，随便输入一串字符即可。<br>
+参数indexName：需要索引数据的索引名，必填项。这个索引在ElasticSearch中必须存在，否则会报错。<br>
+参数typeName：需要索引数据的type名，必填项。这个type必须存在，否则可能会报错，索引数据的json字段名是自动根据读取插件读取到的字段名生成。<br>
+参数prefix：将ElasticSearch的字段名进行前缀添加，可填项。<br>
+参数batchSize：每次批量提交的记录数，必填项。<br>
+参数mapping：将ElasticSearch的字段名进行映射，可填项。<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为字符串格式，可填项。<br>
+  参数split：对指定字段的数据进行分割，转换为数组格式，可填项。<br>
+  目前只实现了以上两个格式化方法。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建ElasticSearch连接使用，程序中可通过getParams()方法获取到。<br>
 
     {
         "plugin":{
@@ -313,19 +313,19 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.txt.TxtReader**
-读取 Txt文件 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.txt.TxtReader，必填项。
-参数filePath：值为文件全路径，filePath、fileDir二填一，同时填写以filePath为准。
-参数fileDir：值为文件目录全路径，必填项。
-参数prefix：值为文件前缀，可填项。搭配fileDir获取文件列表使用。
-参数suffix：值为文件后缀，可填项。搭配fileDir获取文件列表使用。
-参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。
-参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为java.util.Date格式，可填项。
-  目前只实现了以上一个格式化方法。
-以上参数在程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.txt.TxtReader**<br>
+读取 Txt文件 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.txt.TxtReader，必填项。<br>
+参数filePath：值为文件全路径，filePath、fileDir二填一，同时填写以filePath为准。<br>
+参数fileDir：值为文件目录全路径，必填项。<br>
+参数prefix：值为文件前缀，可填项。搭配fileDir获取文件列表使用。<br>
+参数suffix：值为文件后缀，可填项。搭配fileDir获取文件列表使用。<br>
+参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。<br>
+参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为java.util.Date格式，可填项。<br>
+  目前只实现了以上一个格式化方法。<br>
+以上参数在程序中可通过getParams()方法获取到。<br>
 
     {
        "plugin":{
@@ -344,16 +344,16 @@ reader和writer中参数name为必填项。
        }
     }
                                             
-**com.anluy.datapig.plugin.txt.TxtWriter**
-写入 Txt 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.txt.TxtWriter，必填项。
-参数filePath：值为文件全路径，必填项。
-参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。
-参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为java.lang.String格式，可填项。
-  目前只实现了以上一个格式化方法。
-以上参数在程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.txt.TxtWriter**<br>
+写入 Txt 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.txt.TxtWriter，必填项。<br>
+参数filePath：值为文件全路径，必填项。<br>
+参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。<br>
+参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为java.lang.String格式，可填项。<br>
+  目前只实现了以上一个格式化方法。<br>
+以上参数在程序中可通过getParams()方法获取到。<br>
 
     {
         "plugin":{
@@ -369,23 +369,23 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**com.anluy.datapig.plugin.ftp.FtpTxtReader**
-读取 Ftp Txt文件 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.ftp.FtpTxtReader，必填项。
-参数host：值为FTP的IP地址，必填项。
-参数port：值为FTP的端口号，可填项。
-参数userName：值为FTP的登录用户名，必填项。
-参数password：值为FTP的登录密码，必填项。
-参数filePath：值为文件全路径，filePath、fileDir二填一，同时填写以filePath为准。
-参数fileDir：值为文件目录全路径，必填项。
-参数prefix：值为文件前缀，可填项。搭配fileDir获取文件列表使用。
-参数suffix：值为文件后缀，可填项。搭配fileDir获取文件列表使用。
-参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。
-参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为java.util.Date格式，可填项。
-  目前只实现了以上一个格式化方法。
-以上参数在程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.ftp.FtpTxtReader**<br>
+读取 Ftp Txt文件 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.ftp.FtpTxtReader，必填项。<br>
+参数host：值为FTP的IP地址，必填项。<br>
+参数port：值为FTP的端口号，可填项。<br>
+参数userName：值为FTP的登录用户名，必填项。<br>
+参数password：值为FTP的登录密码，必填项。<br>
+参数filePath：值为文件全路径，filePath、fileDir二填一，同时填写以filePath为准。<br>
+参数fileDir：值为文件目录全路径，必填项。<br>
+参数prefix：值为文件前缀，可填项。搭配fileDir获取文件列表使用。<br>
+参数suffix：值为文件后缀，可填项。搭配fileDir获取文件列表使用。<br>
+参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。<br>
+参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为java.util.Date格式，可填项。<br>
+  目前只实现了以上一个格式化方法。<br>
+以上参数在程序中可通过getParams()方法获取到。<br>
 
     {
        "plugin":{
@@ -408,20 +408,20 @@ reader和writer中参数name为必填项。
        }
     }
                                             
-**com.anluy.datapig.plugin.ftp.FtpTxtWriter**
-写入 Ftp Txt 数据插件：
-参数name：值为固定的com.anluy.datapig.plugin.ftp.FtpTxtWriter，必填项。
-参数host：值为FTP的IP地址，必填项。
-参数port：值为FTP的端口号，可填项。
-参数userName：值为FTP的登录用户名，必填项。
-参数password：值为FTP的登录密码，必填项。
-参数filePath：值为文件全路径，必填项。
-参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。
-参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项
-参数format：数据格式化选项。
-  参数date：对指定字段的数据进行时间格式化，转换为java.lang.String格式，可填项。
-  目前只实现了以上一个格式化方法。
-以上参数在程序中可通过getParams()方法获取到。
+**com.anluy.datapig.plugin.ftp.FtpTxtWriter**<br>
+写入 Ftp Txt 数据插件：<br>
+参数name：值为固定的com.anluy.datapig.plugin.ftp.FtpTxtWriter，必填项。<br>
+参数host：值为FTP的IP地址，必填项。<br>
+参数port：值为FTP的端口号，可填项。<br>
+参数userName：值为FTP的登录用户名，必填项。<br>
+参数password：值为FTP的登录密码，必填项。<br>
+参数filePath：值为文件全路径，必填项。<br>
+参数separator：值为文件中的数据的列分隔符，不填默认为,，可填项。<br>
+参数encoding：值为读取文件数据的编码格式，不填默认为UTF-8，可填项<br>
+参数format：数据格式化选项。<br>
+  参数date：对指定字段的数据进行时间格式化，转换为java.lang.String格式，可填项。<br>
+  目前只实现了以上一个格式化方法。<br>
+以上参数在程序中可通过getParams()方法获取到。<br>
 
     {
         "plugin":{
@@ -441,14 +441,14 @@ reader和writer中参数name为必填项。
         }
     }
                                             
-**Reader 插件开发**
-Reader类必须继承com.anluy.datapig.plugin.core.Reader实现call方法并调用this.execute();。
-Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.datapig.plugin.core.Reader.Task实现call方法并调用任务的具体实现。
-实现init(Map params)方法，并在方法中初始化必要的参数和校验。
-实现start()方法，方法中初始化任务对象，并开始调用任务。
-实现end()方法，方法为当程序执行完成后的操作，如调用shutdown()关闭连接等。
-实现shutdown()方法，方法中关闭必要的连接，如数据库连接、线程池等等。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
+**Reader 插件开发**<br>
+Reader类必须继承com.anluy.datapig.plugin.core.Reader实现call方法并调用this.execute();。<br>
+Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.datapig.plugin.core.Reader.Task实现call方法并调用任务的具体实现。<br>
+实现init(Map params)方法，并在方法中初始化必要的参数和校验。<br>
+实现start()方法，方法中初始化任务对象，并开始调用任务。<br>
+实现end()方法，方法为当程序执行完成后的操作，如调用shutdown()关闭连接等。<br>
+实现shutdown()方法，方法中关闭必要的连接，如数据库连接、线程池等等。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
 
     import com.anluy.datapig.job.service.JobManager;
     import com.anluy.datapig.plugin.core.DataPigException;
@@ -652,14 +652,14 @@ Task任务实现类，在Reader类中创建一个内部类并继承com.anluy.dat
         }
     }
                                             
-**Writer 插件开发**
-Writer类必须继承com.anluy.datapig.plugin.core.Writer实现call方法并调用this.execute();。
-Task任务实现类，在Writer类中创建一个内部类并继承com.anluy.datapig.plugin.core.Writer.Task实现call方法并调用任务的具体实现。
-实现init(Map params)方法，并在方法中初始化必要的参数和校验。
-实现start()方法，方法中初始化任务对象，并开始调用任务。
-实现end()方法，方法为当程序执行完成后的操作，如调用shutdown()关闭连接等。
-实现shutdown()方法，方法中关闭必要的连接，如数据库连接、线程池等等。
-以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。
+**Writer 插件开发**<br>
+Writer类必须继承com.anluy.datapig.plugin.core.Writer实现call方法并调用this.execute();。<br>
+Task任务实现类，在Writer类中创建一个内部类并继承com.anluy.datapig.plugin.core.Writer.Task实现call方法并调用任务的具体实现。<br>
+实现init(Map params)方法，并在方法中初始化必要的参数和校验。<br>
+实现start()方法，方法中初始化任务对象，并开始调用任务。<br>
+实现end()方法，方法为当程序执行完成后的操作，如调用shutdown()关闭连接等。<br>
+实现shutdown()方法，方法中关闭必要的连接，如数据库连接、线程池等等。<br>
+以上参数为插件类中通过init(Map params)方法初始化创建数据库连接使用，程序中可通过getParams()方法获取到。<br>
 
     import com.anluy.datapig.job.service.JobManager;
     import com.anluy.datapig.plugin.core.DataPigException;
@@ -939,14 +939,14 @@ Task任务实现类，在Writer类中创建一个内部类并继承com.anluy.dat
         }
     }
                                         
-**任务配置说明**
-任务必须包含参数Bean。
-Bean指定为Spring Bean的类时必须是在Spring容器中的，否则报错。
-Bean指定为class全路径时，会先在Spring容器中取，如果没有，则通过反射实例化obj.getConstructor().newInstance()一个对象，请确保有无参构造函数。
-任务开发
-Task类必须继承com.anluy.datapig.job.task.DataPigTask实现task方法。
-实现task()方法，该方法为程序执行入口方法。
-实现shutdown()方法，方法中关闭必要的连接，如数据库连接、线程池等等。
+**任务配置说明**<br>
+任务必须包含参数Bean。<br>
+Bean指定为Spring Bean的类时必须是在Spring容器中的，否则报错。<br>
+Bean指定为class全路径时，会先在Spring容器中取，如果没有，则通过反射实例化obj.getConstructor().newInstance()一个对象，请确保有无参构造函数。<br>
+任务开发<br>
+Task类必须继承com.anluy.datapig.job.task.DataPigTask实现task方法。<br>
+实现task()方法，该方法为程序执行入口方法。<br>
+实现shutdown()方法，方法中关闭必要的连接，如数据库连接、线程池等等。<br>
 
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
